@@ -1,0 +1,10 @@
+<div>
+	<h1>全部产品列表</h1>
+	<ul>
+		<?php
+			foreach($productList as $v) {
+				echo '<li>产品id：', $v['id'], ' 产品名称：', $v['product_name'], '</li>';
+			}
+		?>
+	</ul>
+</div>

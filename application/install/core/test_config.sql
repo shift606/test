@@ -1,0 +1,1 @@
+INSERT INTO `test_config` (`id`, `path`, `val`) VALUES (1, 'site/domain', '.shift606.com');

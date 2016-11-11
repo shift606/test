@@ -1,0 +1,21 @@
+<div class="header">
+	<!--
+	<div><a href="<?=Tool::getUrl()?>">首页</a></div>
+	<?php
+		$isLogin=Tool::checkLogin();
+		if($isLogin):
+	?>
+	<div>
+		<a href="<?=Tool::getUrl('user/center/index')?>"><?=$_SESSION['current_user']['mobile']?></a> |
+		<a href="<?=Tool::getUrl('user/center/logout/'.$_SESSION['current_user']['logout_key'].'/'.$_SESSION['current_user']['logout_value'])?>">退出登录</a>
+	</div>
+	<?php else:?>
+	<div>
+		<a href="<?=Tool::getUrl('user/entrance/login')?>">登录</a> |
+		<a href="<?=Tool::getUrl('user/entrance/register')?>">注册</a>
+	</div>
+	<?php endif;?>
+	-->
+	<div>header</div>
+
+</div>
