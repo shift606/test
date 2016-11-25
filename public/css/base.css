@@ -5,7 +5,7 @@ button::-moz-focus-inner,input[type="reset"]::-moz-focus-inner,input[type="butto
 .cl:after{display:block;content:".";height:0;visibility:hidden;clear:both;*zoom:1}
 .h{display:none}
 
-.w{width:1200px;margin:0 auto}
+.w{width:800px;margin:0 0 0 10em}
 
 .pager{
     text-align: center;
@@ -20,6 +20,7 @@ button::-moz-focus-inner,input[type="reset"]::-moz-focus-inner,input[type="butto
     border-color: #999;
 }
 .pager li a{
+    font-family: '宋体';
     display: inline-block;
     padding:0 .5em
 }
@@ -30,8 +31,8 @@ button::-moz-focus-inner,input[type="reset"]::-moz-focus-inner,input[type="butto
     padding:0 4px;
     vertical-align: 0;
     width: 2em;
-    text-align: center;
+    text-align: left;
 }
 
 
-.header{border-bottom:1px solid #ddd}
+.header{border-bottom:1px solid #ddd;height:3em}
