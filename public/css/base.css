@@ -5,4 +5,33 @@ button::-moz-focus-inner,input[type="reset"]::-moz-focus-inner,input[type="butto
 .cl:after{display:block;content:".";height:0;visibility:hidden;clear:both;*zoom:1}
 .h{display:none}
 
+.w{width:1200px;margin:0 auto}
+
+.pager{
+    text-align: center;
+    line-height:2em;
+    font-size: 12px;
+}
+.pager li{
+    display: inline-block;
+    border: 1px solid #ddd;
+}
+.pager li:hover{
+    border-color: #999;
+}
+.pager li a{
+    display: inline-block;
+    padding:0 .5em
+}
+.pager li input{
+    font-size: 12px;
+    height: 2em;
+    margin: 0;
+    padding:0 4px;
+    vertical-align: 0;
+    width: 2em;
+    text-align: center;
+}
+
+
 .header{border-bottom:1px solid #ddd}
