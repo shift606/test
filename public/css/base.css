@@ -34,5 +34,19 @@ button::-moz-focus-inner,input[type="reset"]::-moz-focus-inner,input[type="butto
     text-align: left;
 }
 
+.breadcrumb{
+    font-size: 14px;
+    padding:.5em 1em;
+}
+.breadcrumb span{
+    font-family: '宋体';
+}
+.breadcrumb a{
+    margin:0 2px;
+}
+.breadcrumb a:hover{
+    color: #2028cf;
+}
+
 
 .header{border-bottom:1px solid #ddd;height:3em}
