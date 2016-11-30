@@ -12,9 +12,9 @@
 			Core_Util_Config::getInstance();
 		}
 
-		public function _initDatabase(){
+		/*public function _initDatabase(){
 			Core_Util_Database::getInstance();
-		}
+		}*/
 
 		public function _initUser(){
 			if(!isset($_SESSION['current_user'])){
