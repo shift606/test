@@ -3,3 +3,17 @@
     margin:1em 0;
     font-size: 14px;
 }
+.header{
+    position: relative;
+}
+.header .link {
+    position: absolute;
+    bottom: 2px;
+    left: 1em;
+}
+.header .link a{
+    margin:0 2px;
+}
+.header .link a:hover{
+    color: #2028cf;
+}
