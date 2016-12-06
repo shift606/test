@@ -9,7 +9,8 @@
 		}
 		private static function init(){
 			if(!isset(self::$_conf)){
-				self::$_conf= include(LIB_PATH.'/Core/Db/Mysqli/config.php');
+				$C=Core_Util_Config::getInstance();
+				self::$_conf=$C['database'];
 			}
 		}
 		public static function getInstance(){
