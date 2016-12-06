@@ -1,5 +1,5 @@
 <?php
-class Core_Util_Config{
+class Core_Util_Config implements ArrayAccess{
 
 //single----------------------------
 
@@ -41,14 +41,9 @@ class Core_Util_Config{
 //private---------------
 
     //主要变量
-    private $_iniConfig;//application.ini文件中所标识的
+    private $_iniConfig;//all.ini文件中所标识的
     private $_arrConfig;//其他
-
-//protected------------
-
-//public---------------
-
-    public function __get($arg){
+    private function _get($arg){
         if(isset(self::$_instance->_arrConfig[$arg]))
             return self::$_instance->_arrConfig[$arg];
         if(isset(self::$_instance->_iniConfig[$arg]))
@@ -56,8 +51,27 @@ class Core_Util_Config{
         return null;
     }
 
-    public function __set($k,$v){
+    private function _set($k,$v){
         return self::$_instance->_arrConfig[$k]=$v;
+    }
+
+//protected------------
+
+//public---------------
+
+    public function __get($arg){
+        $argArr=explode('/',$arg);
+        $l=count($argArr);
+        $one=$this->_get($argArr[0]);
+        for($i=1;$i<$l;$i++){
+            if(is_null($one))break;
+            $one=$one[$argArr[$i]];
+        }
+        return $one;
+    }
+
+    public function __set($k,$v){
+        return $this->_set($k,$v);
     }
 
     public static function get($arg){
@@ -66,5 +80,23 @@ class Core_Util_Config{
 
     public static function set($k,$v){
         return self::$_instance->__set($k,$v);
+    }
+
+//ArrayAccess-------------
+    /*public boolean offsetExists ( mixed $offset )*/
+    public function offsetExists ( $offset ){
+        return !!self::get($offset);
+    }
+    /*public mixed offsetGet ( mixed $offset )*/
+    public function offsetGet ( $offset ){
+        return self::get($offset);
+    }
+    /*public void offsetSet ( mixed $offset , mixed $value )*/
+    public function offsetSet ( $offset , $value ){
+        return self::set($offset , $value);
+    }
+    /*public void offsetUnset ( mixed $offset )*/
+    public function offsetUnset ( $offset ){
+        return ;
     }
 }
