@@ -18,6 +18,8 @@ class Core_Util_Config implements ArrayAccess{
             file_put_contents(CONF_PATH.'/all.ini', PHP_EOL, FILE_APPEND);
             file_put_contents(CONF_PATH.'/all.ini', file_get_contents(CONF_PATH.'/database.ini'), FILE_APPEND);
             file_put_contents(CONF_PATH.'/all.ini', PHP_EOL, FILE_APPEND);
+            file_put_contents(CONF_PATH.'/all.ini', file_get_contents(CONF_PATH.'/model.ini'), FILE_APPEND);
+            file_put_contents(CONF_PATH.'/all.ini', PHP_EOL, FILE_APPEND);
         }
 
         $this->_iniConfig = new Yaf_Config_Ini(CONF_PATH.'/all.ini');
