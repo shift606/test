@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        body,a{color:#333}
+        ol{padding-left:2em}
+        ol li{ list-style-position:outside;}
+        .extraContent{text-decoration: none;border: 1px dotted transparent}
+        .extraContent > i{cursor: pointer;}
+        .extraContent > i::before{content:'+';display:inline-block;text-align:center;width:1em}
+        .extraContent.show{border-color: #ccc;}
+        .extraContent.show > i::before{content:'-'}
+        .extraContent .content{overflow:auto;height:0;transition:height .6s ease 0s}
+        .extraContent.show .content{height:200px;}
+    </style>
+    <script>
+        jQuery(function($){
+            $('.extraContent').each(function(){
+                var
+                        t=$(this),
+                        switcher= t.find('>i'),
+                        actor= t.find('>.content')
+                ;
+                switcher.click(function(e){
+                    if(t.is('.show'))t.removeClass('show');
+                    else t.addClass('show');
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <div>
+        <h1>目录</h1>
+        <ol>
+            <li>
+                <a href="#pre">前言</a>
+            </li>
+            <li>
+                <a href="#getList">获得接口列表</a>
+            </li>
+        </ol>
+    </div>
+    <hr>
+    <div id="pre">
+        <h1>前言</h1>
+        <ol>
+            <li>使用http协议</li>
+            <li>使用json传输</li>
+        </ol>
+    </div>
+    <hr>
+
+    <div>
+        <ol>
+            <li id="getFunctionList">
+                <h2>获得接口列表</h2>
+                <div class="extraContent">
+                    <i>额外内容</i>
+                    <div class="content">123</div>
+                </div>
+            </li>
+            <li id="setFunctionList">
+                <h2></h2>
+            </li>
+            <li></li>
+        </ol>
+    </div>
+<script>
+
+
+</script>
+</body>
+</html>
