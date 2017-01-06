@@ -2,6 +2,7 @@
 	class Core_Controller_Base extends Yaf_Controller_Abstract{
 
 		protected $_views=[];
+		protected $_request;
 
 		public function init(){
 			$req=$this->getRequest();

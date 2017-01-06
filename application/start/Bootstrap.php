@@ -8,14 +8,6 @@
 			}
 		}
 
-		public function _initConfig(){
-			Core_Util_Config::getInstance();
-		}
-
-		/*public function _initDatabase(){
-			Core_Util_Database::getInstance();
-		}*/
-
 		public function _initUser(){
 			if(!isset($_SESSION['current_user'])){
 				if(isset($_COOKIE[Tool::$_userCookie])){

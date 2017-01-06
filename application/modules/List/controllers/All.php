@@ -2,9 +2,13 @@
 	class AllController extends Core_Controller_Base{
 
 		public function indexAction(){
-			$productList=new Test_Model_Collection_Index_Productlist();
+			$req=$this->getRequest();
+			$req->getQuery();
 
-			$this->getView('content')->assign('productList',$productList->getIndexProductList());
+			$model=new Model_List_Record();
+			$list=$model->getList();
+
+			$this->getView('content')->assign('list',$list);
 
 			$this->renderView();
 		}

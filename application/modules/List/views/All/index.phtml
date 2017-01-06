@@ -1,10 +1,33 @@
-<div>
-	<h1>全部产品列表</h1>
-	<ul>
-		<?php
-			foreach($productList as $v) {
-				echo '<li>产品id：', $v['id'], ' 产品名称：', $v['product_name'], '</li>';
+<div class="body">
+	<div class="breadcrumb">
+		<a href="#">根节点</a>
+		<span>></span>
+		<a href="#">一级节点</a>
+		<span>></span>
+		<a href="#">二级节点,鹏哥犀利</a>
+	</div>
+	<div class="w">
+		<ul class="list">
+			<?php
+			foreach($list as $v) {
+				echo '<li>',$v['title'],'</li>';
 			}
-		?>
-	</ul>
+			?>
+		</ul>
+		<ul class="pager">
+			<li><a href="##"><<</a></li>
+			<li><a href="##"><</a></li>
+			<li><a href="##">...</a></li>
+			<li><a href="##">6</a></li>
+			<li><a href="##">7</a></li>
+			<li><a href="##">8</a></li>
+			<li><a href="##">9</a></li>
+			<li><a href="##">10</a></li>
+			<li><a href="##">...</a></li>
+			<li><a href="##">></a></li>
+			<li><a href="##">>></a></li>
+			<li><input type="text"></li>
+			<li><input type="button" value="Go"></li>
+		</ul>
+	</div>
 </div>
