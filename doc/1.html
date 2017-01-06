@@ -6,15 +6,22 @@
     <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
     <style>
         body,a{color:#333}
+        table{border-collapse:collapse;}
+        th,td{border:1px solid #ddd;padding:.5em}
+        th{background:#f5f2f9}
         ol{padding-left:2em}
         ol li{ list-style-position:outside;}
-        .extraContent{text-decoration: none;border: 1px dotted transparent}
-        .extraContent > i{cursor: pointer;}
+        .extraContent{text-decoration:none;border:1px dotted transparent;margin:2px}
+        .extraContent > i{cursor:pointer;}
         .extraContent > i::before{content:'+';display:inline-block;text-align:center;width:1em}
-        .extraContent.show{border-color: #ccc;}
+        .extraContent.show{border-color:#ccc;}
         .extraContent.show > i::before{content:'-'}
         .extraContent .content{overflow:auto;height:0;transition:height .6s ease 0s}
         .extraContent.show .content{height:200px;}
+        .indent{padding-left:4em}
+        .return-contents{position:fixed;bottom:1em;right:1em;width:3em;height:3em;border:1px dotted transparent;overflow:hidden;cursor: pointer}
+        .return-contents:hover{border-color:#ccc}
+        .return-contents .arrow{border:solid #ccc;border-width:1px 0 0 1px;width:1em;height:1em;transform:rotateZ(45deg);margin:1.4em auto;}
     </style>
     <script>
         jQuery(function($){
@@ -34,18 +41,44 @@
 </head>
 <body>
 
-    <div>
+    <div id="contents">
         <h1>目录</h1>
         <ol>
+            <li>
+                <a href="#contents">目录</a>
+            </li>
+            <li>
+                <a href="#info">信息</a>
+            </li>
             <li>
                 <a href="#pre">前言</a>
             </li>
             <li>
-                <a href="#getList">获得接口列表</a>
+                <a href="#getFunctionList">获得接口列表</a>
+            </li>
+            <li>
+                <a href="#setFunctionList">重置所有接口</a>
+            </li>
+            <li>
+                <a href="#ps1">附录1：状态代码</a>
+            </li>
+            <li>
+                <a href="#log">更新日志</a>
             </li>
         </ol>
     </div>
+
     <hr>
+
+    <div id="info">
+        <h1>信息</h1>
+        <ol>
+            <li><label>版本号：</label><span>0.0</span></li>
+        </ol>
+    </div>
+
+    <hr>
+
     <div id="pre">
         <h1>前言</h1>
         <ol>
@@ -53,26 +86,411 @@
             <li>使用json传输</li>
         </ol>
     </div>
+
     <hr>
 
     <div>
         <ol>
+
             <li id="getFunctionList">
-                <h2>获得接口列表</h2>
+                <h2>获得所有接口</h2>
+                <fieldset>
+                    <legend>说明</legend>
+                    用于获得所有接口数据
+                </fieldset>
+                <fieldset>
+                    <legend>路由</legend>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>方法</th>
+                            <th>URI</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>GET</td>
+                            <td>
+                                /api/InterfaceInfo
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+                <fieldset>
+                    <legend>参数</legend>
+                    无
+                </fieldset>
+                <fieldset>
+                    <legend>返回值</legend>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>名</th>
+                            <th>值类型</th>
+                            <th>解释</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>status</td>
+                            <td>string</td>
+                            <td>状态值，参考:<a href="#ps1">附录1</a></td>
+                        </tr>
+                        <tr>
+                            <td>list</td>
+                            <td>array[json]</td>
+                            <td>接口列表<sup><a href="#getFunctionList-items">1</a></sup></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <br>
+                    <span id="getFunctionList-items">1 接口列表json</span>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>名</th>
+                            <th>类型</th>
+                            <th>必需</th>
+                            <th>解释</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>InterfaceName</td>
+                            <td>string</td>
+                            <td>1</td>
+                            <td>项目名</td>
+                        </tr>
+                        <tr>
+                            <td>FunctionName</td>
+                            <td>string</td>
+                            <td>1</td>
+                            <td>方法名</td>
+                        </tr>
+                        <tr>
+                            <td>ReturnType</td>
+                            <td>string</td>
+                            <td><!--todo:--></td>
+                            <td><!--todo:--></td>
+                        </tr>
+                        <tr>
+                            <td>ReturnName</td>
+                            <td>string</td>
+                            <td><!--todo:--></td>
+                            <td><!--todo:--></td>
+                        </tr>
+                        <tr>
+                            <td>ReturnTemplateId</td>
+                            <td>string</td>
+                            <td><!--todo:--></td>
+                            <td><!--todo:--></td>
+                        </tr>
+                        <tr>
+                            <td>ParaViewModels</td>
+                            <td>array[json]</td>
+                            <td><!--todo:--></td>
+                            <td>接口字段列表<sup><a href="#getFunctionList-items-fields">1.1</a></sup></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <br>
+                    <span id="getFunctionList-items-fields">1.1 接口字段列表json</span>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>名</th>
+                            <th>类型</th>
+                            <th>必需</th>
+                            <th>解释</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>ParaName</td>
+                            <td>string</td>
+                            <td>1</td>
+                            <td>字段名</td>
+                        </tr>
+                        <tr>
+                            <td>ParaType</td>
+                            <td>string</td>
+                            <td>1</td>
+                            <td>字段类型</td>
+                        </tr>
+                        <tr>
+                            <td>ParaIndex</td>
+                            <td>string</td>
+                            <td><!--todo:--></td>
+                            <td><!--todo:--></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+                <fieldset>
+                    <legend>示例</legend>
+                    <div class="indent">
+                        [
+                        <div class="indent">
+                            "InterfaceName":"Intel",<br>
+                            "FunctionName":"func",<br>
+                            "ReturnType":"0001",<br>
+                            "ReturnName":"return",<br>
+                            "ReturnTemplateId":"dbkasbd",<br>
+                            "ParaViewModels":[
+                            <div class="indent">
+                                ["ParaName":"p1", "ParaType":"0002", "ParaIndex":"1"],<br>
+                                ["ParaName":"p1", "ParaType":"0002", "ParaIndex":"1"],<br>
+                                ["ParaName":"p1", "ParaType":"0002", "ParaIndex":"1"]
+                            </div>
+                            ]
+                        </div>
+                        ]
+                    </div>
+                </fieldset>
+            </li>
+
+            <li id="setFunctionList">
+                <h2>重置所有接口</h2>
+                <fieldset>
+                    <legend>说明</legend>
+                    用于重置所有接口数据，原有数据会被覆盖
+                </fieldset>
+                <fieldset>
+                    <legend>路由</legend>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>方法</th>
+                            <th>URI</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>POST</td>
+                            <td>
+                                /api/InterfaceInfo
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+                <fieldset>
+                    <legend>参数</legend>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>名</th>
+                                <th>类型</th>
+                                <th>必需</th>
+                                <th>解释</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>没有名</td>
+                                <td>array[json]</td>
+                                <td>1</td>
+                                <td>接口列表<sup><a href="#setFunctionList-items">1</a></sup></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br>
+                    <span id="setFunctionList-items">1 接口列表json</span>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>名</th>
+                            <th>类型</th>
+                            <th>必需</th>
+                            <th>解释</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>InterfaceName</td>
+                            <td>string</td>
+                            <td>1</td>
+                            <td>项目名</td>
+                        </tr>
+                        <tr>
+                            <td>FunctionName</td>
+                            <td>string</td>
+                            <td>1</td>
+                            <td>方法名</td>
+                        </tr>
+                        <tr>
+                            <td>ReturnType</td>
+                            <td>string</td>
+                            <td><!--todo:--></td>
+                            <td><!--todo:--></td>
+                        </tr>
+                        <tr>
+                            <td>ReturnName</td>
+                            <td>string</td>
+                            <td><!--todo:--></td>
+                            <td><!--todo:--></td>
+                        </tr>
+                        <tr>
+                            <td>ReturnTemplateId</td>
+                            <td>string</td>
+                            <td><!--todo:--></td>
+                            <td><!--todo:--></td>
+                        </tr>
+                        <tr>
+                            <td>ParaViewModels</td>
+                            <td>array[json]</td>
+                            <td><!--todo:--></td>
+                            <td>接口字段列表<sup><a href="#setFunctionList-items-fields">1.1</a></sup></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <br>
+                    <span id="setFunctionList-items-fields">1.1 接口字段列表json</span>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>名</th>
+                            <th>类型</th>
+                            <th>必需</th>
+                            <th>解释</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>ParaName</td>
+                            <td>string</td>
+                            <td>1</td>
+                            <td>字段名</td>
+                        </tr>
+                        <tr>
+                            <td>ParaType</td>
+                            <td>string</td>
+                            <td>1</td>
+                            <td>字段类型</td>
+                        </tr>
+                        <tr>
+                            <td>ParaIndex</td>
+                            <td>string</td>
+                            <td><!--todo:--></td>
+                            <td><!--todo:--></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+                <fieldset>
+                    <legend>返回值</legend>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>名</th>
+                            <th>值类型</th>
+                            <th>解释</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>status</td>
+                            <td>string</td>
+                            <td>状态值，参考:<a href="#ps1">附录1</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+                <fieldset>
+                    <legend>示例</legend>
+                    <div class="indent">
+                        [
+                        <div class="indent">
+                            "InterfaceName":"Intel",<br>
+                            "FunctionName":"func",<br>
+                            "ReturnType":"0001",<br>
+                            "ReturnName":"return",<br>
+                            "ReturnTemplateId":"dbkasbd",<br>
+                            "ParaViewModels":[
+                            <div class="indent">
+                                ["ParaName":"p1", "ParaType":"0002", "ParaIndex":"1"],<br>
+                                ["ParaName":"p1", "ParaType":"0002", "ParaIndex":"1"],<br>
+                                ["ParaName":"p1", "ParaType":"0002", "ParaIndex":"1"]
+                            </div>
+                            ]
+                        </div>
+                        ]
+                    </div>
+                </fieldset>
                 <div class="extraContent">
                     <i>额外内容</i>
-                    <div class="content">123</div>
+                    <div class="content">
+                        其中接口列表部分的格式和 <a href="#getFunctionList">获得接口列表</a> 中的格式一致
+                    </div>
                 </div>
             </li>
-            <li id="setFunctionList">
-                <h2></h2>
-            </li>
-            <li></li>
+
         </ol>
     </div>
-<script>
 
 
-</script>
+    <hr>
+
+    <div id="ps1">
+        <h1>附录1：状态代码</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>code</th>
+                <th>解释</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>0</td>
+                <td>无条件成功</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+
+    <div id="log">
+        <h2>更新日志</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>版本号</th>
+                <th>日期</th>
+                <th>内容</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>0.0</td>
+                <td>2017-01-06</td>
+                <td>
+                    新增：
+                    <ol>
+                        <li>
+                            <a href="#getFunctionList">获得接口列表</a>
+                        </li>
+                        <li>
+                            <a href="#setFunctionList">重置所有接口</a>
+                        </li>
+                    </ol>
+                    <hr>
+                    删除：
+                    <hr>
+                    修改：
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <a class="return-contents" href="#contents" title="返回目录">
+        <div class="arrow"></div>
+    </a>
 </body>
 </html>
