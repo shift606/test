@@ -16,10 +16,12 @@ class Core_Util_Curl{
     public function get($url){
         curl_setopt($this->ch, CURLOPT_URL, $url);
         $response = curl_exec($this->ch);
+        $errno=curl_errno($this->ch);
+        if(!$errno)return ['status'=>$errno];
         if (curl_getinfo($this->ch, CURLINFO_HTTP_CODE) == '200') {
-            return explode("\r\n\r\n", $response, 2);
+            return ['status'=>$errno,'content'=>explode("\r\n\r\n", $response, 2)];
         }
-        return false;
+        return ['status'=>-1];
     }
 
     public function post($url,$postData=[]){
@@ -27,9 +29,11 @@ class Core_Util_Curl{
         curl_setopt($this->ch, CURLOPT_POST, 1);
         curl_setopt($this->ch, CURLOPT_POSTFIELDS,http_build_query($postData));
         $response = curl_exec($this->ch);
+        $errno=curl_errno($this->ch);
+        if(!$errno)return ['status'=>$errno];
         if (curl_getinfo($this->ch, CURLINFO_HTTP_CODE) == '200') {
-            return explode("\r\n\r\n", $response, 2);
+            return ['status'=>$errno,'content'=>explode("\r\n\r\n", $response, 2)];
         }
-        return false;
+        return ['status'=>-1];
     }
 }
