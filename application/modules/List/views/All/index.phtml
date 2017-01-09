@@ -1,16 +1,14 @@
 <div class="body">
 	<div class="breadcrumb">
-		<a href="#">根节点</a>
+		<a href="<?= Tool::getUrl() ?>">首页</a>
 		<span>></span>
-		<a href="#">一级节点</a>
-		<span>></span>
-		<a href="#">二级节点,鹏哥犀利</a>
+		<a href="<?= Tool::getUrl('list/all/index')?>">全部</a>
 	</div>
 	<div class="w">
 		<ul class="list">
 			<?php
 			foreach($list as $v) {
-				echo '<li>',$v['title'],'</li>';
+				echo '<li><a href="',Tool::getUrl('list/detail/index'),'">',$v['title'],'</a></li>';
 			}
 			?>
 		</ul>

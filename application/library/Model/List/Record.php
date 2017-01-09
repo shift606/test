@@ -16,12 +16,19 @@ class Model_List_Record extends Core_Model_Collection_Base{
             ]
         ]);*/
         $list = $client->get($conf['model']['list']['getList']);
-        if($list===false)return [];
         $list=json_decode(json_decode($list[1]));
         $ret=[];
         foreach($list as $v){
             $ret[]=['title'=>$v->InterfaceName];
         }
         return $ret;
+    }
+
+    public function getOne($where=null){
+        $conf=Core_Util_Config::getInstance();
+        $client=new Core_Util_Curl();
+        $list = $client->get($conf['model']['list']['getList']);
+        $list=json_decode(json_decode($list[1]));
+        return $list[0];
     }
 }

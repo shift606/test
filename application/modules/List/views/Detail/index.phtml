@@ -1,0 +1,30 @@
+<div class="body">
+	<div class="breadcrumb">
+		<a href="<?= Tool::getUrl() ?>">首页</a>
+		<span>></span>
+		<a href="<?= Tool::getUrl('list/all/index') ?>"><?=$one->InterfaceName?></a>
+		<span>></span>
+		<a href="<?= Tool::getUrl('list/detail/index') ?>"><?=$one->FunctionName?></a>
+	</div>
+	<div class="w">
+		<div>
+			<label for="InterfaceName">项目名:</label>
+			<input type="text" name="InterfaceName" value="<?=$one->InterfaceName?>">
+		</div>
+		<div>
+			<label for="FunctionName">方法名:</label>
+			<input type="text" name="FunctionName" value="<?=$one->FunctionName?>">
+		</div>
+
+		<div class="fields">
+			字段列表:
+			<?php
+			foreach($one->ParaViewModels as $v){
+				echo '<div><label for="',$v->ParaName,'">',$v->ParaName,':</label><input type="text" name="',$v->ParaName,'"><br></div>';
+			}
+			?>
+		</div>
+
+
+	</div>
+</div>
