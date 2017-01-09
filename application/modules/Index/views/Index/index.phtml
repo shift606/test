@@ -1,8 +1,4 @@
 <div class="body">
 	<h1>首页</h1>
-	<?php
-		$conf=Core_Util_Config::getInstance();
-		var_dump($conf);
-	echo serialize($conf);
-	?>
+	<a href="<?=Tool::getUrl('list/all/index')?>">去列表</a>
 </div>

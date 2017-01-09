@@ -1,0 +1,11 @@
+.list{
+    line-height: 1.8;
+    margin:1em 0;
+    font-size: 14px;
+}
+.breadcrumb{
+    margin-left:5em
+}
+input{border-bottom:1px solid #ccc}
+.fields{border:1px solid #ccc;padding:1em;
+    margin:1em;}

@@ -2,9 +2,7 @@
 	class AllController extends Core_Controller_Base{
 
 		public function indexAction(){
-			$req=$this->getRequest();
-			$req->getQuery();
-
+			$this->addCss('/css/record.css');
 			$model=new Model_List_Record();
 			$list=$model->getList();
 

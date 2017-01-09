@@ -2,6 +2,7 @@
 	class Err{
 		const DEFAULT_ERROR=                    100000;
 		const HAD_BEEN_INSTALLED=               101001;
+		const COMMUNICATION_FAILURE=			102001;
 		//VIEW              2
 		//  TEMPLATE        01
 		//
@@ -34,6 +35,7 @@
 		private static $_errorMsg=[
 			self::DEFAULT_ERROR=>'未知错误',
 			self::HAD_BEEN_INSTALLED=>'已安装',
+			self::COMMUNICATION_FAILURE=>'远端服务不可用',
 
 			self::VIEW_TEMPLATE_NO_EXIST=>'用户视觉模板不存在',
 
